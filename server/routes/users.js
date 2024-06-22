@@ -46,6 +46,16 @@ router.post('/register', async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 // Login user
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
