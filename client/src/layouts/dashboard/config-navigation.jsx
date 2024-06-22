@@ -20,12 +20,12 @@ const navConfig = [
   {
     title: 'approval form',
     path: '/products',
-    icon: icon('ic_cart'),
+    icon: icon('ic_aform'),
   },
   {
     title: 'renewal',
     path: '/renewalform',
-    icon: icon('ic_blog'),
+    icon: icon('ic_rform'),
   },
 ];
 

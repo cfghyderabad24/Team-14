@@ -27,32 +27,36 @@ export default function AppView() {
   useEffect(() => {
     // Fetch Users
     fetch('http://localhost:8000/api/users/')
-      .then(response => response.json())
-      .then(data => setUsers(data))
-      .catch(error => console.error('Error fetching users:', error));
+      .then((response) => response.json())
+      .then((data) => setUsers(data))
+      .catch((error) => console.error('Error fetching users:', error));
 
     // Fetch Renewal Requests
     fetch('http://localhost:8000/api/renewal')
-      .then(response => response.json())
-      .then(data => setRenewalRequests(data))
-      .catch(error => console.error('Error fetching renewal requests:', error));
+      .then((response) => response.json())
+      .then((data) => setRenewalRequests(data))
+      .catch((error) => console.error('Error fetching renewal requests:', error));
   }, []);
 
   const calculateStatistics = () => {
     const totalAmountAwarded = renewalRequests.reduce((sum, req) => sum + req.amount, 0);
-    const ngoCount = users.filter(user => user.role === 'NGO').length;
-    const volunteerCount = users.filter(user => user.role === 'volunteer').length;
-    const studentCount = users.filter(user => user.role === 'student').length;
+    const ngoCount = users.filter((user) => user.role === 'NGO').length;
+    const volunteerCount = users.filter((user) => user.role === 'volunteer').length;
+    const studentCount = users.filter((user) => user.role === 'student').length;
     const totalRenewalRequests = renewalRequests.length;
 
-    const approvedByTrusteeCount = renewalRequests.filter(req => req.approvedBy.includes('trustee')).length;
-    const notApprovedByTrusteeCount = renewalRequests.filter(req => !req.approvedBy.includes('trustee')).length;
+    const approvedByTrusteeCount = renewalRequests.filter((req) =>
+      req.approvedBy.includes('trustee')
+    ).length;
+    const notApprovedByTrusteeCount = renewalRequests.filter(
+      (req) => !req.approvedBy.includes('trustee')
+    ).length;
 
     const courseCounts = renewalRequests.reduce((acc, req) => {
       if (!acc[req.course]) {
         acc[req.course] = 0;
       }
-      acc[req.course]+=1;
+      acc[req.course] += 1;
       return acc;
     }, {});
 
@@ -64,7 +68,7 @@ export default function AppView() {
       notApprovedByTrusteeCount,
       courseCounts,
       studentCount,
-      totalRenewalRequests
+      totalRenewalRequests,
     };
   };
 
@@ -82,7 +86,7 @@ export default function AppView() {
             title="Total Students"
             total={stats.studentCount}
             color="success"
-            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
+            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
           />
         </Grid>
 
@@ -91,7 +95,7 @@ export default function AppView() {
             title="Amount Awarded"
             total={stats.totalAmountAwarded}
             color="info"
-            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
+            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_currency.png" />}
           />
         </Grid>
 
@@ -100,7 +104,7 @@ export default function AppView() {
             title="No of NGO's"
             total={stats.ngoCount}
             color="warning"
-            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
+            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_ngo.png" />}
           />
         </Grid>
 
@@ -109,7 +113,7 @@ export default function AppView() {
             title="No of volunteer's"
             total={stats.volunteerCount}
             color="error"
-            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
+            icon={<img alt="icon" src="/assets/icons/glass/ic_glass_voulnteer.png" />}
           />
         </Grid>
 
@@ -130,13 +134,13 @@ export default function AppView() {
                   name: 'Renewals',
                   type: 'area',
                   fill: 'gradient',
-                  data: [0,0,0,stats.totalRenewalRequests],
+                  data: [0, 0, 0, stats.totalRenewalRequests],
                 },
                 {
                   name: 'Total',
                   type: 'area',
                   fill: 'gradient',
-                  data: [0, 0, 0, stats.studentCount+stats.totalRenewalRequests],
+                  data: [0, 0, 0, stats.studentCount + stats.totalRenewalRequests],
                 },
               ],
             }}
