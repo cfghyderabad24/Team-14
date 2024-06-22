@@ -8,6 +8,9 @@ import { AluminiNotification } from 'src/sections/alumininotification';
 import ScholarshipApprovalForm from 'src/sections/renewalform/renewal-view';
 import { TrusteePage } from 'src/sections/trustee/view';
 import { VolunteerPage } from 'src/sections/volunteer/view';
+import { CourseFile } from 'src/sections/coursefile';
+import { AluminiNotification } from 'src/sections/alumininotification';
+import ScholarshipApprovalForm from 'src/sections/renewalform/renewal-view';
 import VolunteerApprovalForm from 'src/sections/volunteerApproval/volunteerApproval';
 
 export const IndexPage = lazy(() => import('src/pages/app'));
@@ -36,12 +39,9 @@ export default function Router() {
         {path:'user',element:<UserPage/>},
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
-        { path: 'volunteer', element: <VolunteerPage /> },
         { path: 'renewalform', element: <ScholarshipApprovalForm /> },
         {path:'AluminiNotification',element:<AluminiNotification/>},
         {path:'CourseFile',element:<CourseFile/>},
-        {path:'trustee',element:<TrusteePage/>},
-        {path:'ngo',element:<UserPage/>},
        
         
         { path: 'volunteerApproval', element: <VolunteerApprovalForm/>}
