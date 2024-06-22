@@ -8,6 +8,7 @@ import { AluminiNotification } from 'src/sections/alumininotification';
 import ScholarshipApprovalForm from 'src/sections/renewalform/renewal-view';
 import { TrusteePage } from 'src/sections/trustee/view';
 import { VolunteerPage } from 'src/sections/volunteer/view';
+import VolunteerApprovalForm from 'src/sections/volunteerApproval/volunteerApproval';
 
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
@@ -43,6 +44,7 @@ export default function Router() {
         {path:'ngo',element:<UserPage/>},
        
         
+        { path: 'volunteerApproval', element: <VolunteerApprovalForm/>}
       ],
     },
     {
