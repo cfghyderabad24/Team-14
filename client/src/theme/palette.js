@@ -4,7 +4,7 @@ import { alpha } from '@mui/material/styles';
 
 // SETUP COLORS
 
-const GREY = {
+export const grey = {
   0: '#FFFFFF',
   100: '#F9FAFB',
   200: '#F4F6F8',
@@ -17,115 +17,107 @@ const GREY = {
   900: '#161C24',
 };
 
-const PRIMARY = {
-  lighter: '#C8FACD',
-  light: '#5BE584',
-  main: '#00AB55',
-  dark: '#007B55',
-  darker: '#005249',
-  contrastText: '#fff',
+export const primary = {
+  lighter: '#D0ECFE',
+  light: '#73BAFB',
+  main: '#1877F2',
+  dark: '#0C44AE',
+  darker: '#042174',
+  contrastText: '#FFFFFF',
 };
 
-const SECONDARY = {
-  lighter: '#D6E4FF',
-  light: '#84A9FF',
-  main: '#3366FF',
-  dark: '#1939B7',
-  darker: '#091A7A',
-  contrastText: '#fff',
+export const secondary = {
+  lighter: '#EFD6FF',
+  light: '#C684FF',
+  main: '#8E33FF',
+  dark: '#5119B7',
+  darker: '#27097A',
+  contrastText: '#FFFFFF',
 };
 
-const INFO = {
+export const info = {
   lighter: '#CAFDF5',
   light: '#61F3F3',
   main: '#00B8D9',
   dark: '#006C9C',
   darker: '#003768',
-  contrastText: '#fff',
+  contrastText: '#FFFFFF',
 };
 
-const SUCCESS = {
-  lighter: '#D8FBDE',
-  light: '#86E8AB',
-  main: '#36B37E',
-  dark: '#1B806A',
-  darker: '#0A5554',
-  contrastText: '#fff',
+export const success = {
+  lighter: '#C8FAD6',
+  light: '#5BE49B',
+  main: '#00A76F',
+  dark: '#007867',
+  darker: '#004B50',
+  contrastText: '#FFFFFF',
 };
 
-const WARNING = {
+export const warning = {
   lighter: '#FFF5CC',
   light: '#FFD666',
   main: '#FFAB00',
   dark: '#B76E00',
   darker: '#7A4100',
-  contrastText: GREY[800],
+  contrastText: grey[800],
 };
 
-const ERROR = {
+export const error = {
   lighter: '#FFE9D5',
   light: '#FFAC82',
   main: '#FF5630',
   dark: '#B71D18',
   darker: '#7A0916',
-  contrastText: '#fff',
+  contrastText: '#FFFFFF',
 };
 
-const COMMON = {
-  common: { black: '#000', white: '#fff' },
-  primary: PRIMARY,
-  secondary: SECONDARY,
-  info: INFO,
-  success: SUCCESS,
-  warning: WARNING,
-  error: ERROR,
-  grey: GREY,
-  divider: alpha(GREY[500], 0.24),
-  action: {
-    hover: alpha(GREY[500], 0.08),
-    selected: alpha(GREY[500], 0.16),
-    disabled: alpha(GREY[500], 0.8),
-    disabledBackground: alpha(GREY[500], 0.24),
-    focus: alpha(GREY[500], 0.24),
-    hoverOpacity: 0.08,
-    disabledOpacity: 0.48,
-  },
+export const common = {
+  black: '#000000',
+  white: '#FFFFFF',
 };
 
-export default function palette(themeMode) {
-  const light = {
-    ...COMMON,
+export const action = {
+  hover: alpha(grey[500], 0.08),
+  selected: alpha(grey[500], 0.16),
+  disabled: alpha(grey[500], 0.8),
+  disabledBackground: alpha(grey[500], 0.24),
+  focus: alpha(grey[500], 0.24),
+  hoverOpacity: 0.08,
+  disabledOpacity: 0.48,
+};
+
+const base = {
+  primary,
+  secondary,
+  info,
+  success,
+  warning,
+  error,
+  grey,
+  common,
+  divider: alpha(grey[500], 0.2),
+  action,
+};
+
+// ----------------------------------------------------------------------
+
+export function palette() {
+  return {
+    ...base,
     mode: 'light',
     text: {
-      primary: GREY[800],
-      secondary: GREY[600],
-      disabled: GREY[500],
-    },
-    background: { paper: '#fff', default: '#fff', neutral: GREY[200] },
-    action: {
-      ...COMMON.action,
-      active: GREY[600],
-    },
-  };
-
-  const dark = {
-    ...COMMON,
-    mode: 'dark',
-    text: {
-      primary: '#fff',
-      secondary: GREY[500],
-      disabled: GREY[600],
+      primary: grey[800],
+      secondary: grey[600],
+      disabled: grey[500],
     },
     background: {
-      paper: GREY[800],
-      default: GREY[900],
-      neutral: alpha(GREY[500], 0.16),
+      paper: '#FFFFFF',
+      default: grey[100],
+      neutral: grey[200],
     },
     action: {
-      ...COMMON.action,
-      active: GREY[500],
+      ...base.action,
+      active: grey[600],
     },
   };
-
-  return themeMode === 'light' ? light : dark;
 }
