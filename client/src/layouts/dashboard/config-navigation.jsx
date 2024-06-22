@@ -37,6 +37,11 @@ const navConfig = [
     path: '/trustee',
     icon: icon('ic_blog'),
   },
+  {
+    title: 'AluminiNotification',
+    path: '/AluminiNotification',
+    icon: icon('ic_blog'),
+  },
 ];
 
 export default navConfig;
