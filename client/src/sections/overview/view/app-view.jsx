@@ -28,8 +28,8 @@ export default function AppView() {
       <Grid container spacing={3}>
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="Weekly Sales"
-            total={714000}
+            title="Total Students"
+            total={497}
             color="success"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_bag.png" />}
           />
@@ -37,8 +37,8 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="New Users"
-            total={1352831}
+            title="Total Schorlarship Amount"
+            total={11087324}
             color="info"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
           />
@@ -46,8 +46,8 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="Item Orders"
-            total={1723315}
+            title="No of NGO's"
+            total={181}
             color="warning"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_buy.png" />}
           />
@@ -55,7 +55,7 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="Bug Reports"
+            title="No of volunteer's"
             total={234}
             color="error"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_message.png" />}
@@ -64,40 +64,62 @@ export default function AppView() {
 
         <Grid xs={12} md={6} lg={8}>
           <AppWebsiteVisits
-            title="Website Visits"
-            subheader="(+43%) than last year"
+            title="Number of Student's summary!"
+            subheader="since 2016"
+            chart={{
+              labels: ['2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'],
+              series: [
+                {
+                  name: 'New Students',
+                  type: 'column',
+                  fill: 'solid',
+                  data: [8, 10, 4, 83, 78, 53, 74, 76, 111],
+                },
+                {
+                  name: 'Renewals',
+                  type: 'area',
+                  fill: 'gradient',
+                  data: [0, 6, 12, 9, 46, 82, 66, 54, 70],
+                },
+                {
+                  name: 'Total',
+                  type: 'area',
+                  fill: 'gradient',
+                  data: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                },
+              ],
+            }}
+          />
+        </Grid>
+
+        <Grid xs={12} md={6} lg={8}>
+          <AppWebsiteVisits
+            title="Daily Attendace summary!"
+            subheader="since 2016"
             chart={{
               labels: [
-                '01/01/2003',
-                '02/01/2003',
-                '03/01/2003',
-                '04/01/2003',
-                '05/01/2003',
-                '06/01/2003',
-                '07/01/2003',
-                '08/01/2003',
-                '09/01/2003',
-                '10/01/2003',
-                '11/01/2003',
+                '1/1/2024',
+                '1/2/2024',
+                '1/3/2024',
+                '1/4/2024',
+                '1/5/2024',
+                '1/6/2024',
+                '1/7/2024',
+                '1/8/2024',
+                '1/9/2024',
               ],
               series: [
                 {
-                  name: 'Team A',
+                  name: 'Total Classes',
                   type: 'column',
                   fill: 'solid',
-                  data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
+                  data: [8, 10, 4, 83, 78, 53, 74, 76, 111],
                 },
                 {
-                  name: 'Team B',
+                  name: 'Attended Classes',
                   type: 'area',
                   fill: 'gradient',
-                  data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
-                },
-                {
-                  name: 'Team C',
-                  type: 'line',
-                  fill: 'solid',
-                  data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
+                  data: [0, 6, 12, 9, 46, 82, 66, 54, 70],
                 },
               ],
             }}
@@ -106,13 +128,37 @@ export default function AppView() {
 
         <Grid xs={12} md={6} lg={4}>
           <AppCurrentVisits
-            title="Current Visits"
+            title="Course wise Scholarship"
+            subheader="Year 23-24"
             chart={{
               series: [
-                { label: 'America', value: 4344 },
-                { label: 'Asia', value: 5435 },
-                { label: 'Europe', value: 1443 },
-                { label: 'Africa', value: 4443 },
+                { label: 'Engineering', value: 51 },
+                { label: 'BSC', value: 29 },
+                { label: 'BBA', value: 18 },
+                { label: 'nURSING', value: 13 },
+                { label: 'oTHERS', value: 19 },
+                { label: 'Diploma / ITI', value: 12 },
+                { label: 'BCA', value: 12 },
+                { label: 'Pharmacy', value: 8 },
+                { label: 'MBBS', value: 4 },
+                { label: 'Commerce', value: 4 },
+                { label: 'Physiotherapy', value: 3 },
+                { label: 'BCS', value: 3 },
+                { label: 'Architecture', value: 3 },
+                { label: 'Law', value: 2 },
+              ],
+            }}
+          />
+        </Grid>
+
+        <Grid xs={12} md={6} lg={4}>
+          <AppCurrentVisits
+            title="Gender wise Scholarship"
+            subheader="Year 23-24"
+            chart={{
+              series: [
+                { label: 'Female', value: 450 },
+                { label: 'Male', value: 391 },
               ],
             }}
           />
@@ -120,20 +166,19 @@ export default function AppView() {
 
         <Grid xs={12} md={6} lg={8}>
           <AppConversionRates
-            title="Conversion Rates"
-            subheader="(+43%) than last year"
+            title="Year wise Scholarship"
+            subheader="(+37.4%) than last year"
             chart={{
               series: [
-                { label: 'Italy', value: 400 },
-                { label: 'Japan', value: 430 },
-                { label: 'China', value: 448 },
-                { label: 'Canada', value: 470 },
-                { label: 'France', value: 540 },
-                { label: 'Germany', value: 580 },
-                { label: 'South Korea', value: 690 },
-                { label: 'Netherlands', value: 1100 },
-                { label: 'United States', value: 1200 },
-                { label: 'United Kingdom', value: 1380 },
+                { label: '2015-16', value: 8 },
+                { label: '2016-17', value: 16 },
+                { label: '2017-18', value: 16 },
+                { label: '2018-19', value: 91 },
+                { label: '2019-20', value: 124 },
+                { label: '2020-21', value: 135 },
+                { label: '2021-22', value: 140 },
+                { label: '2022-23', value: 130 },
+                { label: '2023-24', value: 181 },
               ],
             }}
           />
