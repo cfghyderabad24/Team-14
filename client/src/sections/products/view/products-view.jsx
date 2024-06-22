@@ -5,6 +5,7 @@ import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
+import MenuItem from '@mui/material/MenuItem';
 import TextField from '@mui/material/TextField';
 import FormLabel from '@mui/material/FormLabel';
 import Typography from '@mui/material/Typography';
@@ -21,18 +22,29 @@ export default function ScholarshipApprovalForm() {
     collegeName: '',
     bankaccount: '',
     scholarshipType: '',
+    tenthCertificate: null,
+    twelfthCertificate: null,
+    parentIncomeCertificate: null,
   });
 
+  const courseTypes = ['Engineering', 'BBA', 'MBBS'];
   const theme = useTheme();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    const { name, value, files } = e.target;
+    if (files) {
+      setFormData({
+        ...formData,
+        [name]: files[0], // Assuming single file upload
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
   const handleClick = async (e) => {
@@ -40,21 +52,19 @@ export default function ScholarshipApprovalForm() {
     setLoading(true);
     setError('');
 
-    const postData = {
-      ...formData,
-      dateOfBirth: formData.dateOfBirth ? new Date(formData.dateOfBirth).toISOString().split('T')[0] : '',
-      submissionDate: formData.submissionDate ? new Date(formData.submissionDate).toISOString().split('T')[0] : '',
-    };
-
     const token = localStorage.getItem('token');
     try {
+      const formDataToSubmit = new FormData();
+      Object.keys(formData).forEach((key) => {
+        formDataToSubmit.append(key, formData[key]);
+      });
+
       const response = await fetch('http://localhost:8080/api/scholarship', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(postData),
+        body: formDataToSubmit,
       });
       if (response.ok) {
         setLoading(false);
@@ -106,19 +116,25 @@ export default function ScholarshipApprovalForm() {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <FormLabel component="legend" sx={formLabelStyle}>
-              Course
+            <FormLabel component="legend" style={{ marginBottom: '10px', fontSize: '17px', color: 'black' }}>
+              Course Type
             </FormLabel>
             <TextField
-              name="course"
-              label="Enter your course"
+              label="Course Type"
               variant="outlined"
-              fullWidth
-              value={formData.course}
+              name="coursetype"
+              value={formData.coursetype}
               onChange={handleChange}
               required
-              sx={textFieldStyle}
-            />
+              fullWidth
+              select
+            >
+              {courseTypes.map((type) => (
+                <MenuItem key={type} value={type}>
+                  {type}
+                </MenuItem>
+              ))}
+            </TextField>
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormLabel component="legend" sx={formLabelStyle}>
@@ -137,7 +153,7 @@ export default function ScholarshipApprovalForm() {
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormLabel component="legend" sx={formLabelStyle}>
-              Parent/Guardian Contact
+              Scholarship Amount
             </FormLabel>
             <TextField
               name="scholarshipamount"
@@ -164,6 +180,62 @@ export default function ScholarshipApprovalForm() {
               required
               sx={textFieldStyle}
             />
+          </Grid>
+
+          {/* New File Upload Fields */}
+          <Grid item xs={12} sm={6}>
+            <FormLabel component="legend" sx={formLabelStyle}>
+              10th Certificate
+            </FormLabel>
+            <Box sx={uploadContainerStyle}>
+              <input
+                type="file"
+                id="tenthCertificate"
+                name="tenthCertificate"
+                onChange={handleChange}
+                accept=".pdf,.doc,.docx"
+                style={fileInputStyle}
+              />
+              <label htmlFor="tenthCertificate" style={fileLabelStyle}>
+                {formData.tenthCertificate ? formData.tenthCertificate.name : 'Choose a file'}
+              </label>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormLabel component="legend" sx={formLabelStyle}>
+              12th Certificate
+            </FormLabel>
+            <Box sx={uploadContainerStyle}>
+              <input
+                type="file"
+                id="twelfthCertificate"
+                name="twelfthCertificate"
+                onChange={handleChange}
+                accept=".pdf,.doc,.docx"
+                style={fileInputStyle}
+              />
+              <label htmlFor="twelfthCertificate" style={fileLabelStyle}>
+                {formData.twelfthCertificate ? formData.twelfthCertificate.name : 'Choose a file'}
+              </label>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormLabel component="legend" sx={formLabelStyle}>
+              Parent Income Certificate
+            </FormLabel>
+            <Box sx={uploadContainerStyle}>
+              <input
+                type="file"
+                id="parentIncomeCertificate"
+                name="parentIncomeCertificate"
+                onChange={handleChange}
+                accept=".pdf,.doc,.docx"
+                style={fileInputStyle}
+              />
+              <label htmlFor="parentIncomeCertificate" style={fileLabelStyle}>
+                {formData.parentIncomeCertificate ? formData.parentIncomeCertificate.name : 'Choose a file'}
+              </label>
+            </Box>
           </Grid>
         </Grid>
       </Stack>
@@ -196,20 +268,19 @@ export default function ScholarshipApprovalForm() {
           color: alpha(theme.palette.background.default, 0.9),
           imgUrl: '/assets/background/overlay_4.jpg',
         }),
-        height: 1,
-        marginTop: '-5%',
-        marginLeft: '7%',
-        marginRight: '7%',
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '0 20px',
       }}
     >
-      <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
-        <Card sx={cardStyle}>
-          <Typography variant="h4" sx={{ marginBottom: '30px' }}>
-            Scholarship Approval Form
-          </Typography>
-          {renderForm}
-        </Card>
-      </Stack>
+      <Card sx={cardStyle}>
+        <Typography variant="h4" sx={{ marginBottom: '30px', textAlign: 'center' }}>
+          Scholarship Approval Form
+        </Typography>
+        {renderForm}
+      </Card>
     </Box>
   );
 }
@@ -218,7 +289,7 @@ export default function ScholarshipApprovalForm() {
 const formLabelStyle = {
   marginBottom: '10px',
   fontSize: '17px',
-  color: 'white',
+  color: 'black',
 };
 
 const textFieldStyle = {
@@ -231,9 +302,38 @@ const alertStyle = {
 
 const submitButtonStyle = {
   marginTop: '40px',
+  backgroundColor: '#1976d2',
+  color: 'white',
+  '&:hover': {
+    backgroundColor: '#155a9a',
+  },
 };
-  
+
+const uploadContainerStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '10px',
+  marginTop: '5px',
+  backgroundColor: '#f0f0f0',
+  borderRadius: '4px',
+  padding: '8px 16px',
+  cursor: 'pointer',
+  border: '1px solid #ccc',
+};
+
+const fileInputStyle = {
+  display: 'none',
+};
+
+const fileLabelStyle = {
+  cursor: 'pointer',
+  color: '#1976d2',
+  fontWeight: 'bold',
+};
+
 const cardStyle = {
-  p: 5,
-  width: 1,
+  padding: '40px 20px',
+  width: '100%',
+  maxWidth: '800px',
+  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.1)',
 };
