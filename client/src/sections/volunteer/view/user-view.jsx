@@ -23,7 +23,7 @@ import TableEmptyRows from '../table-empty-rows';
 import UserTableToolbar from '../user-table-toolbar';
 import { emptyRows, applyFilter, getComparator } from '../utils';
 
-export default function UserPage() {
+export default function VolunteerPage() {
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState('asc');
   const [selected, setSelected] = useState([]);
@@ -38,7 +38,7 @@ export default function UserPage() {
       try {
         const response = await fetch('http://localhost:8000/api/scholarshipRequests/');
         const data = await response.json();
-        setStudents(data.filter(student => student.approvedBy.length === 0));
+        setStudents(data.filter(student => student.approvedBy.includes('NGO')));
         setLoading(false);
       } catch (error) {
         console.error('Error fetching students:', error);
@@ -55,7 +55,7 @@ export default function UserPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ approvedBy: ['volunteer'] }),
+        body: JSON.stringify({ approvedBy: ['volunteer','NGO'] }),
       });
 
       if (response.ok) {
