@@ -1,19 +1,19 @@
-import { faker } from '@faker-js/faker';
+// import { faker } from '@faker-js/faker';
 
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
-import Iconify from 'src/components/iconify';
+// import Iconify from 'src/components/iconify';
 
-import AppTasks from '../app-tasks';
-import AppNewsUpdate from '../app-news-update';
-import AppOrderTimeline from '../app-order-timeline';
+// import AppTasks from '../app-tasks';
+// import AppNewsUpdate from '../app-news-update';
+// import AppOrderTimeline from '../app-order-timeline';
 import AppCurrentVisits from '../app-current-visits';
 import AppWebsiteVisits from '../app-website-visits';
 import AppWidgetSummary from '../app-widget-summary';
-import AppTrafficBySite from '../app-traffic-by-site';
-import AppCurrentSubject from '../app-current-subject';
+// import AppTrafficBySite from '../app-traffic-by-site';
+// import AppCurrentSubject from '../app-current-subject';
 import AppConversionRates from '../app-conversion-rates';
 
 // ----------------------------------------------------------------------
@@ -92,6 +92,31 @@ export default function AppView() {
           />
         </Grid>
 
+        <Grid xs={12} md={6} lg={4}>
+          <AppCurrentVisits
+            title="Course wise Scholarship"
+            subheader="Year 23-24"
+            chart={{
+              series: [
+                { label: 'Engineering', value: 51 },
+                { label: 'BSC', value: 29 },
+                { label: 'BBA', value: 18 },
+                { label: 'nURSING', value: 13 },
+                { label: 'oTHERS', value: 19 },
+                { label: 'Diploma / ITI', value: 12 },
+                { label: 'BCA', value: 12 },
+                { label: 'Pharmacy', value: 8 },
+                { label: 'MBBS', value: 4 },
+                { label: 'Commerce', value: 4 },
+                { label: 'Physiotherapy', value: 3 },
+                { label: 'BCS', value: 3 },
+                { label: 'Architecture', value: 3 },
+                { label: 'Law', value: 2 },
+              ],
+            }}
+          />
+        </Grid>
+
         <Grid xs={12} md={6} lg={8}>
           <AppWebsiteVisits
             title="Daily Attendace summary!"
@@ -128,37 +153,12 @@ export default function AppView() {
 
         <Grid xs={12} md={6} lg={4}>
           <AppCurrentVisits
-            title="Course wise Scholarship"
+            title="Scholarship Approvals"
             subheader="Year 23-24"
             chart={{
               series: [
-                { label: 'Engineering', value: 51 },
-                { label: 'BSC', value: 29 },
-                { label: 'BBA', value: 18 },
-                { label: 'nURSING', value: 13 },
-                { label: 'oTHERS', value: 19 },
-                { label: 'Diploma / ITI', value: 12 },
-                { label: 'BCA', value: 12 },
-                { label: 'Pharmacy', value: 8 },
-                { label: 'MBBS', value: 4 },
-                { label: 'Commerce', value: 4 },
-                { label: 'Physiotherapy', value: 3 },
-                { label: 'BCS', value: 3 },
-                { label: 'Architecture', value: 3 },
-                { label: 'Law', value: 2 },
-              ],
-            }}
-          />
-        </Grid>
-
-        <Grid xs={12} md={6} lg={4}>
-          <AppCurrentVisits
-            title="Gender wise Scholarship"
-            subheader="Year 23-24"
-            chart={{
-              series: [
-                { label: 'Female', value: 450 },
-                { label: 'Male', value: 391 },
+                { label: 'Approved', value: 40 },
+                { label: 'Not Approved', value: 29 },
               ],
             }}
           />
@@ -184,7 +184,7 @@ export default function AppView() {
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={4}>
+        {/* <Grid xs={12} md={6} lg={4}>
           <AppCurrentSubject
             title="Current Subject"
             chart={{
@@ -205,7 +205,7 @@ export default function AppView() {
               id: faker.string.uuid(),
               title: faker.person.jobTitle(),
               description: faker.commerce.productDescription(),
-              image: `/assets/images/covers/cover_${index + 1}.jpg`,
+              image: /assets/images/covers/cover_${index + 1}.jpg,
               postedAt: faker.date.recent(),
             }))}
           />
@@ -223,7 +223,7 @@ export default function AppView() {
                 'New order placed #XF-2356',
                 'New order placed #XF-2346',
               ][index],
-              type: `order${index + 1}`,
+              type: order${index + 1},
               time: faker.date.past(),
             }))}
           />
@@ -268,7 +268,7 @@ export default function AppView() {
               { id: '5', name: 'Sprint Showcase' },
             ]}
           />
-        </Grid>
+        </Grid> */}
       </Grid>
     </Container>
   );
