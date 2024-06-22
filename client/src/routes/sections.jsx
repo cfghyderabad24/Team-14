@@ -6,6 +6,7 @@ import DashboardLayout from 'src/layouts/dashboard';
 import { CourseFile } from 'src/sections/coursefile';
 import { AluminiNotification } from 'src/sections/alumininotification';
 import ScholarshipApprovalForm from 'src/sections/renewalform/renewal-view';
+import { AttendanceuploadForm } from 'src/sections/attendance';
 import VolunteerApprovalForm from 'src/sections/volunteerApproval/volunteerApproval';
 
 export const IndexPage = lazy(() => import('src/pages/app'));
@@ -15,7 +16,6 @@ export const LoginPage = lazy(() => import('src/pages/login'));
 export const ProductsPage = lazy(() => import('src/pages/products'));
 export const Page404 = lazy(() => import('src/pages/page-not-found'));
 export const RegisterPage = lazy(() => import('src/pages/register'));
-
 
 // ----------------------------------------------------------------------
 
@@ -34,10 +34,11 @@ export default function Router() {
         { path: 'user', element: <UserPage /> },
         { path: 'products', element: <ProductsPage /> },
         { path: 'blog', element: <BlogPage /> },
-        {path:'renewalform',element:<ScholarshipApprovalForm/>},
-        {path:'AluminiNotification',element:<AluminiNotification/>},
-        {path:'CourseFile',element:<CourseFile/>},
-        { path: 'volunteerApproval', element: <VolunteerApprovalForm/>}
+        { path: 'renewalform', element: <ScholarshipApprovalForm /> },
+        { path: 'AluminiNotification', element: <AluminiNotification /> },
+        { path: 'CourseFile', element: <CourseFile /> },
+        { path: 'volunteerApproval', element: <VolunteerApprovalForm /> },
+        { path: 'attendanceupload', element: <AttendanceuploadForm /> },
       ],
     },
     {
