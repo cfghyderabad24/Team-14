@@ -34,7 +34,7 @@ const navConfig = [
   },
   {
     title: 'Discussions',
-    path: '/Discussions',
+    path: '/diss',
     icon: icon('ic_blog'),
   },
   
