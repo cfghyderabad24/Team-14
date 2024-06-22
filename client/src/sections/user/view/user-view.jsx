@@ -126,7 +126,7 @@ export default function UserPage() {
                   { id: 'company', label: 'User Name' },
                   { id: 'role', label: 'Email Address' },
                   { id: 'isVerified', label: 'Verified', align: 'center' },
-                  { id: 'status', label: 'Status' },
+                  // { id: 'status', label: 'StatApproved' },
                   { id: '' },
                 ]}
               />
