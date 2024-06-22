@@ -185,22 +185,65 @@ export default function LoginView() {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleClick = () => {
-    router.push('/dashboard');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // setLoading(true);
+    console.log(JSON.stringify({ username, password }))
+    try {
+      const response = await fetch('http://localhost:8000/api/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+
+      if (!response.ok) {
+        throw new Error('Login failed');
+      }
+
+      const data = await response.json();
+      localStorage.setItem('token', data.token);
+      router.push('/');
+      // Optionally redirect to dashboard or another route
+      // history.push('/dashboard');
+    } catch (error) {
+      console.error('Error logging in:', error);
+      // Handle error (e.g., show error message)
+    }
+
+    // setLoading(false);
   };
 
   const handleSignUpClick = () => {
     router.push("/register");
   };
 
+  // taking username and password form and request a endpoint login for token
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
   const renderForm = (
     <>
       <Stack spacing={3}>
-        <TextField name="email" label="Email address" />
+        <TextField name="username" label="Username" value={username}
+        onChange={handleUsernameChange} />
 
         <TextField
           name="password"
           label="Password"
+          value={password}
+          onChange={handlePasswordChange}
           type={showPassword ? 'text' : 'password'}
           InputProps={{
             endAdornment: (
@@ -226,7 +269,7 @@ export default function LoginView() {
         type="submit"
         variant="contained"
         color="inherit"
-        onClick={handleClick}
+        onClick={handleSubmit}
       >
         Login
       </LoadingButton>
@@ -267,45 +310,6 @@ export default function LoginView() {
               Get started
             </Link>
           </Typography>
-
-          <Stack direction="row" spacing={2}>
-            <Button
-              fullWidth
-              size="large"
-              color="inherit"
-              variant="outlined"
-              sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
-            >
-              <Iconify icon="eva:google-fill" color="#DF3E30" />
-            </Button>
-
-            <Button
-              fullWidth
-              size="large"
-              color="inherit"
-              variant="outlined"
-              sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
-            >
-              <Iconify icon="eva:facebook-fill" color="#1877F2" />
-            </Button>
-
-            <Button
-              fullWidth
-              size="large"
-              color="inherit"
-              variant="outlined"
-              sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
-            >
-              <Iconify icon="eva:twitter-fill" color="#1C9CEA" />
-            </Button>
-          </Stack>
-
-          <Divider sx={{ my: 3 }}>
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              OR
-            </Typography>
-          </Divider>
-
           {renderForm}
         </Card>
       </Stack>
