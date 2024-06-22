@@ -11,6 +11,7 @@ import { VolunteerPage } from 'src/sections/volunteer/view';
 import ScholarshipApprovalForm from 'src/sections/renewalform/renewal-view';
 import { NGOPage } from 'src/sections/ngo/view';
 import VolunteerApprovalForm from 'src/sections/volunteerApproval/volunteerApproval';
+import { Discussions } from 'src/sections/diss';
 
 
 export const IndexPage = lazy(() => import('src/pages/app'));
@@ -45,6 +46,7 @@ export default function Router() {
         {path:'volunteer',element:<VolunteerPage/>},
         {path:'trustee',element:<TrusteePage/>},
         {path:'ngo',element:<NGOPage/>},
+        {path:'diss',element:<Discussions/>},
 
         { path: 'volunteerApproval', element: <VolunteerApprovalForm/>}
       ],
