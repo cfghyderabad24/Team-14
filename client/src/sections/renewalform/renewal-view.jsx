@@ -17,14 +17,12 @@ export default function ScholarshipApprovalForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    collegeName: '',
-    scholarshipType: '',
-    tenthCertificate: null,
-    twelfthCertificate: null,
-    parentIncomeCertificate: null,
+    amount: '',
+    incomeStatement: null,
+    receipt: null,
+    collegeMarksheet: null,
   });
 
-  
   const theme = useTheme();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -56,13 +54,11 @@ export default function ScholarshipApprovalForm() {
         formDataToSubmit.append(key, formData[key]);
       });
 
-      const response = await fetch('http://localhost:8080/api/scholarship', {
+      const response = await fetch('http://localhost:8000/api/renewal', {
         method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
         body: formDataToSubmit,
       });
+
       if (response.ok) {
         setLoading(false);
         console.log('Data posted successfully');
@@ -80,7 +76,7 @@ export default function ScholarshipApprovalForm() {
 
   const renderForm = (
     <>
-      <Stack spacing={3}>
+      <Stack spacing={3} style={{ padding: '25px' }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <FormLabel component="legend" sx={formLabelStyle}>
@@ -112,55 +108,56 @@ export default function ScholarshipApprovalForm() {
               sx={textFieldStyle}
             />
           </Grid>
-          
-          <Grid item xs={12} sm={6}>
-            <FormLabel component="legend" sx={formLabelStyle}>
-              College Name
-            </FormLabel>
-            <TextField
-              name="collegeName"
-              label="Enter College Name"
-              variant="outlined"
-              fullWidth
-              value={formData.collegeName}
-              onChange={handleChange}
-              required
-              sx={textFieldStyle}
-            />
-          </Grid>
           <Grid item xs={12} sm={6}>
             <FormLabel component="legend" sx={formLabelStyle}>
               Scholarship Amount
             </FormLabel>
             <TextField
-              name="scholarshipamount"
+              name="amount"
               label="Enter Scholarship Amount"
               variant="outlined"
               fullWidth
-              value={formData.scholarshipamount}
+              value={formData.amount}
               onChange={handleChange}
               required
               sx={textFieldStyle}
             />
           </Grid>
-          
 
           {/* New File Upload Fields */}
           <Grid item xs={12} sm={6}>
             <FormLabel component="legend" sx={formLabelStyle}>
-              Payment Reciept
+              Income Statement
             </FormLabel>
             <Box sx={uploadContainerStyle}>
               <input
                 type="file"
-                id="Paymentreciept"
-                name="Paymentreciept"
+                id="incomeStatement"
+                name="incomeStatement"
                 onChange={handleChange}
                 accept=".pdf,.doc,.docx"
                 style={fileInputStyle}
               />
-              <label htmlFor="Paymentreciept" style={fileLabelStyle}>
-                {formData.Paymentreciept ? formData.Paymentreciept.name : 'Choose a file'}
+              <label htmlFor="incomeStatement" style={fileLabelStyle}>
+                {formData.incomeStatement ? formData.incomeStatement.name : 'Choose a file'}
+              </label>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <FormLabel component="legend" sx={formLabelStyle}>
+              Payment Receipt
+            </FormLabel>
+            <Box sx={uploadContainerStyle}>
+              <input
+                type="file"
+                id="receipt"
+                name="receipt"
+                onChange={handleChange}
+                accept=".pdf,.doc,.docx"
+                style={fileInputStyle}
+              />
+              <label htmlFor="receipt" style={fileLabelStyle}>
+                {formData.receipt ? formData.receipt.name : 'Choose a file'}
               </label>
             </Box>
           </Grid>
@@ -171,18 +168,17 @@ export default function ScholarshipApprovalForm() {
             <Box sx={uploadContainerStyle}>
               <input
                 type="file"
-                id="collegemarksheet"
-                name="collegemarksheet"
+                id="collegeMarksheet"
+                name="collegeMarksheet"
                 onChange={handleChange}
                 accept=".pdf,.doc,.docx"
                 style={fileInputStyle}
               />
-              <label htmlFor="collegemarksheet" style={fileLabelStyle}>
-                {formData.collegemarksheet ? formData.collegemarksheet.name : 'Choose a file'}
+              <label htmlFor="collegeMarksheet" style={fileLabelStyle}>
+                {formData.collegeMarksheet ? formData.collegeMarksheet.name : 'Choose a file'}
               </label>
             </Box>
           </Grid>
-          
         </Grid>
       </Stack>
 
