@@ -24,6 +24,101 @@ export default function AppView() {
       <Typography variant="h4" sx={{ mb: 5 }}>
         Hi, Welcome back 👋
       </Typography>
+      <Grid xs={12} md={6} lg={8}>
+  <AppWebsiteVisits
+    title="Student Performance Year Wise"
+    subheader="From 2010 to 2024"
+    chart={{
+      labels: [
+        '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'
+      ],
+      series: [
+        {
+          name: 'Math',
+          type: 'column',
+          fill: 'solid',
+          data: [65, 70, 75, 80, 85, 78, 82, 90, 88, 92, 95, 97, 93, 89, 91],
+        },
+        {
+          name: 'Science',
+          type: 'area',
+          fill: 'gradient',
+          data: [60, 65, 68, 73, 76, 79, 84, 87, 85, 89, 91, 94, 92, 90, 93],
+        },
+        {
+          name: 'English',
+          type: 'line',
+          fill: 'solid',
+          data: [70, 75, 78, 80, 83, 86, 88, 90, 91, 93, 94, 96, 95, 94, 96],
+        },
+      ],
+    }}
+  />
+</Grid>
+
+<Grid xs={12} md={6} lg={8}>
+  <AppWebsiteVisits
+    title="Employee Productivity"
+    subheader="Monthly Analysis for 2024"
+    chart={{
+      labels: [
+        'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+      ],
+      series: [
+        {
+          name: 'Hours Worked',
+          type: 'column',
+          fill: 'solid',
+          data: [160, 145, 170, 180, 165, 155, 160, 170, 175, 160, 150, 140],
+        },
+        {
+          name: 'Tasks Completed',
+          type: 'area',
+          fill: 'gradient',
+          data: [50, 45, 55, 60, 52, 50, 51, 53, 54, 50, 45, 42],
+        },
+        {
+          name: 'Overtime Hours',
+          type: 'line',
+          fill: 'solid',
+          data: [5, 7, 6, 8, 6, 5, 6, 7, 6, 5, 4, 3],
+        },
+      ],
+    }}
+  />
+</Grid>
+
+<Grid xs={12} md={6} lg={8}>
+  <AppWebsiteVisits
+    title="Monthly Revenue"
+    subheader="2024"
+    chart={{
+      labels: [
+        'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'
+      ],
+      series: [
+        {
+          name: 'Product Sales',
+          type: 'column',
+          fill: 'solid',
+          data: [12000, 15000, 13000, 16000, 17500, 18000, 19000, 20000, 21000, 22000, 23000, 24000],
+        },
+        {
+          name: 'Service Sales',
+          type: 'area',
+          fill: 'gradient',
+          data: [8000, 8500, 9000, 9500, 10000, 10500, 11000, 11500, 12000, 12500, 13000, 13500],
+        },
+        {
+          name: 'Total Revenue',
+          type: 'line',
+          fill: 'solid',
+          data: [20000, 23500, 22000, 25500, 27500, 28500, 30000, 31500, 33000, 34500, 36000, 37500],
+        },
+      ],
+    }}
+  />
+</Grid>
 
       <Grid container spacing={3}>
         <Grid xs={12} sm={6} md={3}>
