@@ -42,6 +42,16 @@ const navConfig = [
     path: '/AluminiNotification',
     icon: icon('ic_blog'),
   },
+  {
+    title: 'courses',
+    path: '/courses',
+    icon: icon('ic_blog'),
+  },
+  {
+    title: 'volunteerapprovalform',
+    path: '/volunteerapprovalform',
+    icon: icon('ic_blog'),
+  },
 ];
 
 export default navConfig;

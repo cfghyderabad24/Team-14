@@ -45,6 +45,8 @@ export default function Router() {
         {path:'volunteer',element:<VolunteerPage/>},
         {path:'trustee',element:<TrusteePage/>},
         {path:'ngo',element:<NGOPage/>},
+        {path:'courses',element:<CourseFile/>},
+        {path:'volunteerapprovalform',element:<VolunteerApprovalForm/>},
 
         { path: 'volunteerApproval', element: <VolunteerApprovalForm/>}
       ],

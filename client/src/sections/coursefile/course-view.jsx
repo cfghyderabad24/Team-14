@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-
 import {
   Box,
   Card,
   Stack,
-  Select,
   Checkbox,
-  MenuItem,
   Typography,
   FormControl,
   FormControlLabel,
+  Button,
 } from '@mui/material';
 
 const skillCategories = [
@@ -38,17 +36,30 @@ const skillCategories = [
 
 const NotificationView = () => {
   const [selectedOptions, setSelectedOptions] = useState(
-    Array(skillCategories.length).fill('')
+    Array(skillCategories.length).fill([]) // Initialize with arrays for each category
   );
 
-  const handleSelectChange = (categoryIndex, event) => {
+  const handleCheckboxChange = (categoryIndex, option) => {
     const newSelectedOptions = [...selectedOptions];
-    newSelectedOptions[categoryIndex] = event.target.value;
+    const categorySelectedOptions = newSelectedOptions[categoryIndex];
+    if (categorySelectedOptions.includes(option)) {
+      newSelectedOptions[categoryIndex] = categorySelectedOptions.filter(
+        (selectedOption) => selectedOption !== option
+      );
+    } else {
+      newSelectedOptions[categoryIndex] = [...categorySelectedOptions, option];
+    }
     setSelectedOptions(newSelectedOptions);
+  };
+
+  const handleSubmit = () => {
+    console.log('Selected Options:', selectedOptions);
+    // Handle form submission logic here, e.g., send data to API
   };
 
   return (
     <Box
+    style={{padding:"25px"}}
       sx={{
         display: 'flex',
         justifyContent: 'center',
@@ -70,29 +81,28 @@ const NotificationView = () => {
               {category.options.map((option, optionIndex) => (
                 <FormControlLabel
                   key={optionIndex}
-                  control={<Checkbox />}
+                  control={
+                    <Checkbox
+                      checked={selectedOptions[categoryIndex].includes(option)}
+                      onChange={() =>
+                        handleCheckboxChange(categoryIndex, option)
+                      }
+                    />
+                  }
                   label={option}
                 />
               ))}
-              <Select
-                value={selectedOptions[categoryIndex]}
-                onChange={(event) => handleSelectChange(categoryIndex, event)}
-                displayEmpty
-                inputProps={{ 'aria-label': `${category.name} Dropdown` }}
-                sx={{ mt: 2 }}
-              >
-                <MenuItem value="" disabled>
-                  Select an option
-                </MenuItem>
-                {category.options.map((option, optIndex) => (
-                  <MenuItem key={optIndex} value={option}>
-                    {option}
-                  </MenuItem>
-                ))}
-              </Select>
             </FormControl>
           ))}
         </Stack>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ mt: 4 }}
+          onClick={handleSubmit}
+        >
+          Submit
+        </Button>
       </Card>
     </Box>
   );
