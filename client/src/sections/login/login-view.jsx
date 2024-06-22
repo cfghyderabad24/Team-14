@@ -206,6 +206,7 @@ export default function LoginView() {
 
       const data = await response.json();
       localStorage.setItem('token', data.token);
+      localStorage.setItem('role', data.role);
       router.push('/');
       // Optionally redirect to dashboard or another route
       // history.push('/dashboard');
