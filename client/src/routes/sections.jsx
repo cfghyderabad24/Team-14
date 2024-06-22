@@ -43,8 +43,9 @@ export default function Router() {
         {path:'AluminiNotification',element:<AluminiNotification/>},
         {path:'CourseFile',element:<CourseFile/>},
         {path:'volunteer',element:<VolunteerPage/>},
-        {path:'trustee',element:<TrusteePage/>},
+        //{path:'trustee',element:<TrusteePage/>},
         {path:'ngo',element:<NGOPage/>},
+        {path:'trustee', element:<TrusteeApprovalForm/>},
 
         { path: 'volunteerApproval', element: <VolunteerApprovalForm/>}
       ],
