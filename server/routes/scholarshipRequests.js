@@ -35,17 +35,18 @@ function checkFileType(file, cb) {
 }
 
 // Create a new scholarship request
-router.post('/', upload.fields([{ name: 'incomeStatement', maxCount: 1 }, { name: 'marksheet', maxCount: 1 }]), async (req, res) => {
+router.post('/', upload.fields([{ name: 'incomeStatement', maxCount: 1 }, { name: 'marksheet10', maxCount: 1 }, { name: 'marksheet12', maxCount: 1 }]), async (req, res) => {
   try {
     const { name, email, course, amount, collegeName, bankAccountNumber } = req.body;
 
     // Check if files are uploaded
-    if (!req.files || !req.files['incomeStatement'] || !req.files['marksheet']) {
+    if (!req.files || !req.files['incomeStatement'] || !req.files['marksheet10'] || !req.files['marksheet12']) {
       return res.status(400).json({ error: 'Please upload both income statement and marksheet' });
     }
 
     const incomeStatement = req.files['incomeStatement'][0].path;
-    const marksheet = req.files['marksheet'][0].path;
+    const marksheet10 = req.files['marksheet10'][0].path;
+    const marksheet12 = req.files['marksheet12'][0].path;
 
     const newRequest = new ScholarshipRequest({
       name,
@@ -55,7 +56,8 @@ router.post('/', upload.fields([{ name: 'incomeStatement', maxCount: 1 }, { name
       collegeName,
       bankAccountNumber,
       incomeStatement,
-      marksheet,
+      marksheet10,
+      marksheet12,
     });
 
     const request = await newRequest.save();
@@ -65,6 +67,17 @@ router.post('/', upload.fields([{ name: 'incomeStatement', maxCount: 1 }, { name
     res.status(500).send('Server error');
   }
 });
+
+router.get('/', async (req, res) => {
+  try {
+    const requests = await ScholarshipRequest.find().sort({ date: -1 });
+    res.json(requests);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 // Get a specific scholarship request by ID
 router.get('/:id', async (req, res) => {
   try {

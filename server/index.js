@@ -2,6 +2,7 @@ const userRoutes = require('./routes/users');
 const connectToMongo=require('./db');
 const bodyParser = require('body-parser');
 const scholarshipRequestRoutes = require('./routes/scholarshipRequests');
+const renewalRequestRoutes = require('./routes/renewalRequest');
 const express = require('express')
 const dotenv = require('dotenv');
 const notifications = require('./routes/notifications');
@@ -21,6 +22,7 @@ const port = 8000
 app.use(express.json())
 app.use('/api/users', userRoutes);
 app.use('/api/scholarshipRequests', scholarshipRequestRoutes);
+app.use('/api/renewal', renewalRequestRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/notifications', notifications);
 

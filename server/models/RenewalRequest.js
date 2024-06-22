@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const ScholarshipRequestSchema = new mongoose.Schema({
+const RenewalRequestSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -10,31 +10,19 @@ const ScholarshipRequestSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  course: {
-    type: String,
-    required: true,
-  },
   amount: {
     type: Number,
-    required: true,
-  },
-  collegeName: {
-    type: String,
-    required: true,
-  },
-  bankAccountNumber: {
-    type: String,
     required: true,
   },
   incomeStatement: {
     type: String,
     required: true,
   },
-  marksheet10: {
+  receipt: {
     type: String,
     required: true,
   },
-  marksheet12: {
+  collegeMarksheet: {
     type: String,
     required: true,
   },
@@ -45,6 +33,6 @@ const ScholarshipRequestSchema = new mongoose.Schema({
   },
 });
 
-const ScholarshipRequest = mongoose.model('ScholarshipRequest', ScholarshipRequestSchema);
+const ScholarshipRequest = mongoose.model('RenewalRequestSchema', RenewalRequestSchema);
 
 module.exports = ScholarshipRequest;
