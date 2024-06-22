@@ -46,8 +46,6 @@ export default function ScholarshipApprovalForm() {
     e.preventDefault();
     setLoading(true);
     setError('');
-
-    const token = localStorage.getItem('token');
     try {
       const formDataToSubmit = new FormData();
       Object.keys(formData).forEach((key) => {
