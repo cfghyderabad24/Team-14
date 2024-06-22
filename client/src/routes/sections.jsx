@@ -5,13 +5,12 @@ import DashboardLayout from 'src/layouts/dashboard';
 
 import { CourseFile } from 'src/sections/coursefile';
 import { AluminiNotification } from 'src/sections/alumininotification';
-import ScholarshipApprovalForm from 'src/sections/renewalform/renewal-view';
+// import ScholarshipApprovalForm from 'src/sections/renewalform/renewal-view';
 import { TrusteePage } from 'src/sections/trustee/view';
 import { VolunteerPage } from 'src/sections/volunteer/view';
-import { CourseFile } from 'src/sections/coursefile';
-import { AluminiNotification } from 'src/sections/alumininotification';
 import ScholarshipApprovalForm from 'src/sections/renewalform/renewal-view';
 import VolunteerApprovalForm from 'src/sections/volunteerApproval/volunteerApproval';
+import { NGOPage } from 'src/sections/ngo/view';
 
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
@@ -42,8 +41,10 @@ export default function Router() {
         { path: 'renewalform', element: <ScholarshipApprovalForm /> },
         {path:'AluminiNotification',element:<AluminiNotification/>},
         {path:'CourseFile',element:<CourseFile/>},
-       
-        
+        {path:'volunteer',element:<VolunteerPage/>},
+        {path:'trustee',element:<TrusteePage/>},
+        {path:'ngo',element:<NGOPage/>},
+
         { path: 'volunteerApproval', element: <VolunteerApprovalForm/>}
       ],
     },
