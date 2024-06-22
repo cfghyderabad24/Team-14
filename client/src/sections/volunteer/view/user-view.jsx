@@ -14,8 +14,6 @@ import TableCell from '@mui/material/TableCell';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { CircularProgress } from '@mui/material';
-
-
 import Scrollbar from 'src/components/scrollbar';
 
 import TableNoData from '../table-no-data';
