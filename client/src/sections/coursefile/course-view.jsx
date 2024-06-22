@@ -17,7 +17,7 @@ const NotificationView = () => {
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', backgroundColor: '#f0f2f5' }}>
       <Card sx={{ p: 4, width: '100%', maxWidth: 600 }}>
-        <Typography variant="h4" sx={{ mb: 4, textAlign: 'center' }}>Notification Settings</Typography>
+        <Typography variant="h4" sx={{ mb: 4, textAlign: 'center' }}>Vocational Training </Typography>
         <Stack spacing={4}>
           {[...Array(5)].map((_, index) => (
             <FormControl key={index} fullWidth>
@@ -51,7 +51,7 @@ export default function NotificationsPage() {
   return (
     <>
       <Helmet>
-        <title> Notifications | Minimal UI </title>
+        <title> Notifications </title>
       </Helmet>
 
       <NotificationView />
