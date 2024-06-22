@@ -124,8 +124,9 @@ export default function UserPage() {
                 headLabel={[
                   { id: 'name', label: 'Name' },
                   { id: 'company', label: 'User Name' },
-                  { id: 'role', label: 'Email Address' },
+                  { id: 'role', label: 'Clg name' },
                   { id: 'isVerified', label: 'Verified', align: 'center' },
+                  { id: 'scrship', label: 'ScholarShip' },
                   // { id: 'status', label: 'StatApproved' },
                   { id: '' },
                 ]}

@@ -23,7 +23,9 @@ export default function UserTableRow({
   company,
   role,
   isVerified,
+  // scrship,
   status,
+
   handleClick,
 }) {
   const [open, setOpen] = useState(null);
@@ -57,6 +59,7 @@ export default function UserTableRow({
         <TableCell>{role}</TableCell>
 
         <TableCell align="center">{isVerified ? 'Yes' : 'No'}</TableCell>
+        <TableCell>10</TableCell>
 {/* 
         <TableCell>
           <Label color={(status === 'banned' && 'error') || 'success'}>{status}</Label>
