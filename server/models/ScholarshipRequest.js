@@ -26,6 +26,14 @@ const ScholarshipRequestSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  incomeStatement: {
+    type: String,
+    required: true,
+  },
+  marksheet: {
+    type: String,
+    required: true,
+  },
   approvedBy: {
     type: [String],
     enum: ['NGO', 'volunteer', 'trustee'],

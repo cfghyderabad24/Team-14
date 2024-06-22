@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const scholarshipRequestRoutes = require('./routes/scholarshipRequests');
 const express = require('express')
 const dotenv = require('dotenv');
+const notifications = require('./routes/notifications');
+const path = require('path');
 // const auth = require('./routes/auth')
 // const notes = require('./routes/notes')
 var cors = require('cors')
@@ -19,6 +21,8 @@ const port = 8000
 app.use(express.json())
 app.use('/api/users', userRoutes);
 app.use('/api/scholarshipRequests', scholarshipRequestRoutes);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/notifications', notifications);
 
 app.listen(port, () => {
   console.log(`Example app listening on http://localhost:${port}`)
