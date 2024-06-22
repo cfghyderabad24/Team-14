@@ -15,10 +15,10 @@ export default function UserTableHead({
   order,
   orderBy,
   rowCount,
-  headLabel,
   numSelected,
   onRequestSort,
   onSelectAllClick,
+  headLabel,
 }) {
   const onSort = (property) => (event) => {
     onRequestSort(event, property);
