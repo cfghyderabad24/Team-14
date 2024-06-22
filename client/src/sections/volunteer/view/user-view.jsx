@@ -15,7 +15,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { CircularProgress } from '@mui/material';
 
-import Iconify from 'src/components/iconify';
+
 import Scrollbar from 'src/components/scrollbar';
 
 import TableNoData from '../table-no-data';
