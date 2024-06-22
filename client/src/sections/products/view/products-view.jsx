@@ -15,75 +15,78 @@ import { alpha, useTheme } from '@mui/material/styles';
 import { bgGradient } from 'src/theme/css';
 
 export default function ScholarshipApprovalForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    course: '',
-    collegeName: '',
-    bankaccount: '',
-    scholarshipType: '',
-    tenthCertificate: null,
-    twelfthCertificate: null,
-    parentIncomeCertificate: null,
-  });
-
   const courseTypes = ['Engineering', 'BBA', 'MBBS'];
   const theme = useTheme();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    course: 'Engineering',
+    collegeName: '',
+    amount: '',
+    bankAccountNumber: '',
+    marksheet10: null,
+    marksheet12: null,
+    incomeStatement: null,
+  });
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (files) {
-      setFormData({
-        ...formData,
-        [name]: files[0], // Assuming single file upload
-      });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  const handleClick = async (e) => {
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    setFormData({
+      ...formData,
+      [name]: files[0],
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
-    const token = localStorage.getItem('token');
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('email', formData.email);
+    data.append('course', formData.course);
+    data.append('collegeName', formData.collegeName);
+    data.append('amount', formData.amount);
+    data.append('bankAccountNumber', formData.bankAccountNumber);
+    data.append('marksheet10', formData.marksheet10);
+    data.append('marksheet12', formData.marksheet12);
+    data.append('incomeStatement', formData.incomeStatement);
+
+    console.log(data);
+    
     try {
-      const formDataToSubmit = new FormData();
-      Object.keys(formData).forEach((key) => {
-        formDataToSubmit.append(key, formData[key]);
+      const response = await fetch('http://localhost:8000/api/scholarshipRequests/', {
+        method: 'POST',
+        body: data,
       });
 
-      const response = await fetch('http://localhost:8080/api/scholarship', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formDataToSubmit,
-      });
       if (response.ok) {
-        setLoading(false);
-        console.log('Data posted successfully');
+        // Handle success
+        console.log('Scholarship request submitted');
       } else {
-        setLoading(false);
-        console.error('Failed to post data');
-        setError('Failed to submit form. Please try again.');
+        setError('Error submitting scholarship request');
       }
     } catch (err) {
+      setError('Error submitting scholarship request');
+    } finally {
       setLoading(false);
-      console.error('Error posting data:', err);
-      setError('Error submitting form. Please try again later.');
     }
   };
 
   const renderForm = (
-    <>
-      <Stack spacing={3}>
+    <form onSubmit={handleSubmit}>
+      <Stack spacing={3} style={{ padding: '25px' }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6}>
             <FormLabel component="legend" sx={formLabelStyle}>
@@ -94,9 +97,9 @@ export default function ScholarshipApprovalForm() {
               label="Enter Your Name"
               variant="outlined"
               fullWidth
+              required
               value={formData.name}
               onChange={handleChange}
-              required
               sx={textFieldStyle}
             />
           </Grid>
@@ -109,25 +112,26 @@ export default function ScholarshipApprovalForm() {
               label="Enter your email"
               variant="outlined"
               fullWidth
+              required
               value={formData.email}
               onChange={handleChange}
-              required
               sx={textFieldStyle}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <FormLabel component="legend" style={{ marginBottom: '10px', fontSize: '17px', color: 'black' }}>
+            <FormLabel component="legend" sx={formLabelStyle}>
               Course Type
             </FormLabel>
             <TextField
               label="Course Type"
               variant="outlined"
-              name="coursetype"
-              value={formData.coursetype}
-              onChange={handleChange}
+              name="course"
               required
               fullWidth
               select
+              value={formData.course}
+              onChange={handleChange}
+              sx={textFieldStyle}
             >
               {courseTypes.map((type) => (
                 <MenuItem key={type} value={type}>
@@ -145,9 +149,9 @@ export default function ScholarshipApprovalForm() {
               label="Enter College Name"
               variant="outlined"
               fullWidth
+              required
               value={formData.collegeName}
               onChange={handleChange}
-              required
               sx={textFieldStyle}
             />
           </Grid>
@@ -156,13 +160,13 @@ export default function ScholarshipApprovalForm() {
               Scholarship Amount
             </FormLabel>
             <TextField
-              name="scholarshipamount"
+              name="amount"
               label="Enter Scholarship Amount"
               variant="outlined"
               fullWidth
-              value={formData.scholarshipamount}
-              onChange={handleChange}
               required
+              value={formData.amount}
+              onChange={handleChange}
               sx={textFieldStyle}
             />
           </Grid>
@@ -171,69 +175,69 @@ export default function ScholarshipApprovalForm() {
               Bank Account Number
             </FormLabel>
             <TextField
-              name="bankaccount"
+              name="bankAccountNumber"
               label="Enter Bank Account Number"
               variant="outlined"
               fullWidth
-              value={formData.bankaccount}
-              onChange={handleChange}
               required
+              value={formData.bankAccountNumber}
+              onChange={handleChange}
               sx={textFieldStyle}
             />
           </Grid>
 
-          {/* New File Upload Fields */}
+          {/* File Upload Fields */}
           <Grid item xs={12} sm={6}>
             <FormLabel component="legend" sx={formLabelStyle}>
-              10th Certificate
+              10th Marksheet
             </FormLabel>
             <Box sx={uploadContainerStyle}>
               <input
                 type="file"
-                id="tenthCertificate"
-                name="tenthCertificate"
-                onChange={handleChange}
+                id="marksheet10"
+                name="marksheet10"
                 accept=".pdf,.doc,.docx"
+                onChange={handleFileChange}
                 style={fileInputStyle}
               />
-              <label htmlFor="tenthCertificate" style={fileLabelStyle}>
-                {formData.tenthCertificate ? formData.tenthCertificate.name : 'Choose a file'}
+              <label htmlFor="marksheet10" style={fileLabelStyle}>
+                {formData.marksheet10 ? formData.marksheet10.name : 'Choose a file'}
               </label>
             </Box>
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormLabel component="legend" sx={formLabelStyle}>
-              12th Certificate
+              12th Marksheet
             </FormLabel>
             <Box sx={uploadContainerStyle}>
               <input
                 type="file"
-                id="twelfthCertificate"
-                name="twelfthCertificate"
-                onChange={handleChange}
+                id="marksheet12"
+                name="marksheet12"
                 accept=".pdf,.doc,.docx"
+                onChange={handleFileChange}
                 style={fileInputStyle}
               />
-              <label htmlFor="twelfthCertificate" style={fileLabelStyle}>
-                {formData.twelfthCertificate ? formData.twelfthCertificate.name : 'Choose a file'}
+              <label htmlFor="marksheet12" style={fileLabelStyle}>
+                {formData.marksheet12 ? formData.marksheet12.name : 'Choose a file'}
               </label>
             </Box>
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormLabel component="legend" sx={formLabelStyle}>
-              Parent Income Certificate
+              Income Statement
             </FormLabel>
             <Box sx={uploadContainerStyle}>
               <input
                 type="file"
-                id="parentIncomeCertificate"
-                name="parentIncomeCertificate"
-                onChange={handleChange}
+                id="incomeStatement"
+                name="incomeStatement"
                 accept=".pdf,.doc,.docx"
+                onChange={handleFileChange}
                 style={fileInputStyle}
               />
-              <label htmlFor="parentIncomeCertificate" style={fileLabelStyle}>
-                {formData.parentIncomeCertificate ? formData.parentIncomeCertificate.name : 'Choose a file'}
+              <label htmlFor="incomeStatement" style={fileLabelStyle}>
+                {formData.incomeStatement ? formData.incomeStatement.name : 'Choose a file'}
               </label>
             </Box>
           </Grid>
@@ -253,16 +257,16 @@ export default function ScholarshipApprovalForm() {
         type="submit"
         variant="contained"
         color="inherit"
-        onClick={handleClick}
         loading={loading}
       >
         Submit Application
       </LoadingButton>
-    </>
+    </form>
   );
 
   return (
     <Box
+      style={{ marginTop: '105px' }}
       sx={{
         ...bgGradient({
           color: alpha(theme.palette.background.default, 0.9),
@@ -272,7 +276,7 @@ export default function ScholarshipApprovalForm() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '0 20px',
+        padding: '0px 20px',
       }}
     >
       <Card sx={cardStyle}>
