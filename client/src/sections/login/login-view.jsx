@@ -207,6 +207,8 @@ export default function LoginView() {
       const data = await response.json();
       localStorage.setItem('token', data.token);
       localStorage.setItem('role', data.role);
+      localStorage.setItem('email', data.email);
+      localStorage.setItem('username', data.username);
       // navConfig = getFilteredNavConfig();
       router.push('/');
       // Optionally redirect to dashboard or another route

@@ -74,7 +74,9 @@ router.post('/login', async (req, res) => {
     const payload = {
       user: {
         id: user.id,
-        role: user.role
+        role: user.role,
+        email: user.email,
+        username: user.username,
       },
     };
 
@@ -83,7 +85,7 @@ router.post('/login', async (req, res) => {
       process.env.SECRETKEY,
       (err, token) => {
         if (err) throw err;
-        res.json({ token , role: user.role });
+        res.json({ token , role: user.role,email:user.email,username:user.username });
       }
     );
   } catch (err) {

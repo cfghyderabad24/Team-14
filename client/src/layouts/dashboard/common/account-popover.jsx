@@ -27,6 +27,8 @@ const MENU_OPTIONS = [
 export default function AccountPopover() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(null);
+  const username=localStorage.getItem('username');
+  const email=localStorage.getItem('email');
 
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
@@ -54,7 +56,7 @@ export default function AccountPopover() {
       >
         <Avatar
           src={account.photoURL}
-          alt={account.displayName}
+          alt={username}
           sx={{
             width: 36,
             height: 36,
@@ -82,10 +84,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {username}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
+            {email}
           </Typography>
         </Box>
 
