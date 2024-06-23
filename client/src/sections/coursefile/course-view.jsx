@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+
 import {
   Box,
   Card,
   Stack,
-  Checkbox,
-  Typography,
+  // Checkbox,
   Button,
+  Typography,
   FormControl,
   FormControlLabel,
 } from '@mui/material';
@@ -39,18 +40,18 @@ const NotificationView = () => {
     Array(skillCategories.length).fill([]) // Initialize with arrays for each category
   );
 
-  const handleCheckboxChange = (categoryIndex, option) => {
-    const newSelectedOptions = [...selectedOptions];
-    const categorySelectedOptions = newSelectedOptions[categoryIndex];
-    if (categorySelectedOptions.includes(option)) {
-      newSelectedOptions[categoryIndex] = categorySelectedOptions.filter(
-        (selectedOption) => selectedOption !== option
-      );
-    } else {
-      newSelectedOptions[categoryIndex] = [...categorySelectedOptions, option];
-    }
-    setSelectedOptions(newSelectedOptions);
-  };
+  // const handleCheckboxChange = (categoryIndex, option) => {
+  //   const newSelectedOptions = [...selectedOptions];
+  //   const categorySelectedOptions = newSelectedOptions[categoryIndex];
+  //   if (categorySelectedOptions.includes(option)) {
+  //     newSelectedOptions[categoryIndex] = categorySelectedOptions.filter(
+  //       (selectedOption) => selectedOption !== option
+  //     );
+  //   } else {
+  //     newSelectedOptions[categoryIndex] = [...categorySelectedOptions, option];
+  //   }
+  //   setSelectedOptions(newSelectedOptions);
+  // };
 
   const handleSubmit = () => {
     console.log('Selected Options:', selectedOptions);
@@ -81,14 +82,14 @@ const NotificationView = () => {
               {category.options.map((option, optionIndex) => (
                 <FormControlLabel
                   key={optionIndex}
-                  control={
-                    <Checkbox
-                      checked={selectedOptions[categoryIndex].includes(option)}
-                      onChange={() =>
-                        handleCheckboxChange(categoryIndex, option)
-                      }
-                    />
-                  }
+                  // control={
+                  //   <Checkbox
+                  //     checked={selectedOptions[categoryIndex].includes(option)}
+                  //     onChange={() =>
+                  //       handleCheckboxChange(categoryIndex, option)
+                  //     }
+                  //   />
+                  // }
                   label={option}
                 />
               ))}
