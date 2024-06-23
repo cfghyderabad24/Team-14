@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import { useState } from 'react';
 
 import Box from '@mui/material/Box';

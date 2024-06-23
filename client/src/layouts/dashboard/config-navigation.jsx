@@ -42,8 +42,8 @@ const navConfig1 = [
     icon: icon('ic_blog'),
   },
   {
-    title: 'courses',
-    path: '/courses',
+    title: 'coursefile',
+    path: '/coursefile',
     icon: icon('ic_blog'),
   },
   {
@@ -52,21 +52,21 @@ const navConfig1 = [
     icon: icon('ic_blog'),
   },
   {
-    title: 'diss',
-    path: '/diss',
+    title: 'discussion',
+    path: '/discussion',
     icon: icon('ic_blog'),
   },
 ];
 const navConfig12 = (role) => {
   switch (role) {
     case 'student':
-      return navConfig1.filter(item => ['dashboard', 'approval form', 'renewal', 'courses','diss'].includes(item.title));
+      return navConfig1.filter(item => ['dashboard', 'approval form', 'renewal','discussion'].includes(item.title));
     case 'volunteer':
       return navConfig1.filter(item => ['dashboard', 'volunteer', 'volunteerapprovalform'].includes(item.title));
     case 'trustee':
       return navConfig1.filter(item => ['dashboard', 'trustee'].includes(item.title));
     case 'alumni':
-      return navConfig1.filter(item => ['dashboard', 'AluminiNotification', 'diss'].includes(item.title));
+      return navConfig1.filter(item => ['dashboard', 'AluminiNotification', 'discussion'].includes(item.title));
     case 'NGO':
       return navConfig1.filter(item => ['dashboard', 'NGO'].includes(item.title));
     default:
