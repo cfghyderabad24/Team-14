@@ -144,18 +144,6 @@ export default function AppView() {
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={4}>
-          <AppCurrentVisits
-            title="Approved Requests"
-            subheader="Year 24-25"
-            chart={{
-              series: [
-                { label: 'Approved', value: stats.approvedByTrusteeCount },
-                { label: 'Not Approved', value: stats.notApprovedByTrusteeCount },
-              ],
-            }}
-          />
-        </Grid>
 
         <Grid xs={12} md={6} lg={4}>
           <AppCurrentVisits
@@ -166,6 +154,19 @@ export default function AppView() {
                 { label: 'Engineering', value: stats.courseCounts.Engineering || 0 },
                 { label: 'MBBS', value: stats.courseCounts.MBBS || 0 },
                 { label: 'BBA', value: stats.courseCounts.BBA || 0 },
+              ],
+            }}
+          />
+        </Grid>
+
+        <Grid xs={12} md={6} lg={4}>
+          <AppCurrentVisits
+            title="Approved Requests"
+            subheader="Year 24-25"
+            chart={{
+              series: [
+                { label: 'Approved', value: stats.approvedByTrusteeCount },
+                { label: 'Not Approved', value: stats.notApprovedByTrusteeCount },
               ],
             }}
           />
