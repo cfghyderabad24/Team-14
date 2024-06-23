@@ -1,42 +1,93 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 
-import { Box, Card, Stack,  Select, Checkbox, MenuItem, Typography , FormControl, FormControlLabel} from '@mui/material';
+import {
+  Box,
+  Card,
+  Stack,
+  Select,
+  Checkbox,
+  MenuItem,
+  Typography,
+  FormControl,
+  FormControlLabel,
+} from '@mui/material';
 
-const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'];
+const skillCategories = [
+  {
+    name: 'Soft Skills',
+    options: ['Communication', 'Teamwork', 'Time Management', 'Leadership'],
+  },
+  {
+    name: 'Interview Skills',
+    options: ['Mock Interviews', 'Behavioral Questions', 'Technical Questions'],
+  },
+  {
+    name: 'English Speaking',
+    options: ['Basic English', 'Intermediate English', 'Advanced English'],
+  },
+  {
+    name: 'Career Guidance',
+    options: ['Resume Building', 'Job Search Strategies', 'Networking'],
+  },
+  {
+    name: 'Mentoring',
+    options: ['Personal Development', 'Career Advice', 'Goal Setting'],
+  },
+];
 
 const NotificationView = () => {
-  const [selectedOptions, setSelectedOptions] = useState(Array(5).fill(''));
+  const [selectedOptions, setSelectedOptions] = useState(
+    Array(skillCategories.length).fill('')
+  );
 
-  const handleSelectChange = (index, event) => {
+  const handleSelectChange = (categoryIndex, event) => {
     const newSelectedOptions = [...selectedOptions];
-    newSelectedOptions[index] = event.target.value;
+    newSelectedOptions[categoryIndex] = event.target.value;
     setSelectedOptions(newSelectedOptions);
   };
 
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', backgroundColor: '#f0f2f5' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '100vh',
+        backgroundColor: '#f0f2f5',
+      }}
+    >
       <Card sx={{ p: 4, width: '100%', maxWidth: 600 }}>
-        <Typography variant="h4" sx={{ mb: 4, textAlign: 'center' }}>Vocational Training </Typography>
+        <Typography variant="h4" sx={{ mb: 4, textAlign: 'center' }}>
+          Vocational Training
+        </Typography>
         <Stack spacing={4}>
-          {[...Array(5)].map((_, index) => (
-            <FormControl key={index} fullWidth>
-              <FormControlLabel
-                control={<Checkbox />}
-                label={`Checkbox ${index + 1}`}
-              />
+          {skillCategories.map((category, categoryIndex) => (
+            <FormControl key={categoryIndex} fullWidth>
+              <Typography variant="h6" sx={{ mb: 2 }}>
+                {category.name}
+              </Typography>
+              {category.options.map((option, optionIndex) => (
+                <FormControlLabel
+                  key={optionIndex}
+                  control={<Checkbox />}
+                  label={option}
+                />
+              ))}
               <Select
-                value={selectedOptions[index]}
-                onChange={(event) => handleSelectChange(index, event)}
+                value={selectedOptions[categoryIndex]}
+                onChange={(event) => handleSelectChange(categoryIndex, event)}
                 displayEmpty
-                inputProps={{ 'aria-label': `Dropdown ${index + 1}` }}
+                inputProps={{ 'aria-label': `${category.name} Dropdown` }}
                 sx={{ mt: 2 }}
               >
                 <MenuItem value="" disabled>
                   Select an option
                 </MenuItem>
-                {options.map((option, optIndex) => (
-                  <MenuItem key={optIndex} value={option}>{option}</MenuItem>
+                {category.options.map((option, optIndex) => (
+                  <MenuItem key={optIndex} value={option}>
+                    {option}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -47,14 +98,13 @@ const NotificationView = () => {
   );
 };
 
-export default function NotificationsPage() {
-  return (
-    <>
-      <Helmet>
-        <title> Notifications </title>
-      </Helmet>
+const NotificationsPage = () => (
+  <>
+    <Helmet>
+      <title>Notifications</title>
+    </Helmet>
+    <NotificationView />
+  </>
+);
 
-      <NotificationView />
-    </>
-  );
-}
+export default NotificationsPage;

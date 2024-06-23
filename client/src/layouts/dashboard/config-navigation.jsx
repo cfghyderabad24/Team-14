@@ -13,8 +13,8 @@ const navConfig = [
     icon: icon('ic_analytics'),
   },
   {
-    title: 'volunteer',
-    path: '/user',
+    title: 'NGO',
+    path: '/ngo',
     icon: icon('ic_user'),
   },
   {
@@ -26,6 +26,21 @@ const navConfig = [
     title: 'renewal',
     path: '/renewalform',
     icon: icon('ic_rform'),
+  },
+  {
+    title: 'volunteer',
+    path: '/volunteer',
+    icon: icon('ic_blog'),
+  },
+  {
+    title: 'trustee',
+    path: '/trustee',
+    icon: icon('ic_blog'),
+  },
+  {
+    title: 'AluminiNotification',
+    path: '/AluminiNotification',
+    icon: icon('ic_blog'),
   },
 ];
 

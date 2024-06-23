@@ -25,12 +25,33 @@ const AluminiNotification = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here, e.g., send data to server
-    console.log(formData);
-    // Reset form after submission
-    setFormData({ name: '', message: '' });
+    
+    try {
+      const response = await fetch('http://localhost:8000/api/notifications/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title: formData.name,
+          description: formData.message
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit notification');
+      }
+
+      const data = await response.json();
+      console.log('Notification submitted successfully:', data);
+      
+      // Reset form after successful submission
+      setFormData({ name: '', message: '' });
+    } catch (error) {
+      console.error('Error submitting notification:', error);
+    }
   };
 
   return (
