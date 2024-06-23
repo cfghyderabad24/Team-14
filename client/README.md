@@ -1,3 +1,10 @@
+## S.T. Bhatevara Foundation
+
+The client package consists of the front-end modules for sign up, sign in, for each role of user - student, alumni, partner NGO, volunteer and trustee. It includes a notification feature that can be posted by an alumni. Volunteers and partner NGOs can use approval forms, access student-uploaded docs. The student can upload bank passbook, fee receipt. It includes a feature to onboard an NGO.
+
+
+
+
 ## Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
 
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)

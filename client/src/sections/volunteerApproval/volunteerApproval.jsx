@@ -47,11 +47,11 @@ export default function VolunteerApprovalForm() {
   };
 
   const handleSubmit = () => {
-    // Handle form submission 
+    // Handle form submission on click event
     console.log(formValues);
     router.push('/dashboard');
   };
-
+//returns the card with checklist for volunteer to approve
   return (
     <Box
       sx={{
@@ -72,8 +72,7 @@ export default function VolunteerApprovalForm() {
 
       <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
         <Card
-          sx={{
-            p: 5,
+          sx={{p: 5,
             width: 1,
             maxWidth: 600,
             m: { xs: 2, md: 3 },
@@ -100,7 +99,7 @@ export default function VolunteerApprovalForm() {
             />
             <FormControlLabel
               control={<Checkbox checked={formValues.marksheetsAttached} onChange={handleChange} name="marksheetsAttached" />}
-              label="Marksheets of 10th, 12th are attached"
+              label="Marksheets of 10th and 12th are attached"
             />
             <FormControlLabel
               control={<Checkbox checked={formValues.feeReceiptsAttached} onChange={handleChange} name="feeReceiptsAttached" />}
@@ -132,7 +131,8 @@ export default function VolunteerApprovalForm() {
               label="Father handicapped"
             />
           </FormGroup>
-
+          
+          
           <TextField
             name="otherComments"
             label="Other comments"
