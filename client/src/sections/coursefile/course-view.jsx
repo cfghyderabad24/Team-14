@@ -6,9 +6,9 @@ import {
   Stack,
   Checkbox,
   Typography,
+  Button,
   FormControl,
   FormControlLabel,
-  Button,
 } from '@mui/material';
 
 const skillCategories = [

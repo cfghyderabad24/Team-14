@@ -3614,7 +3614,7 @@ vite-plugin-checker@^0.6.2:
 
 vite@^5.3.1:
   version "5.3.1"
-  resolved "https://registry.npmjs.org/vite/-/vite-5.3.1.tgz"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.3.1.tgz#bb2ca6b5fd7483249d3e86b25026e27ba8a663e6"
   integrity sha512-XBmSKRLXLxiaPYamLv3/hnP/KXDai1NDexN0FpkTaZXTfycHvkRHoenpgl/fvuK/kPbB6xAgoyiryAhQNxYmAQ==
   dependencies:
     esbuild "^0.21.3"
