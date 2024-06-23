@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-useless-fragment */
+/* eslint-disable import/no-unresolved */
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
@@ -14,6 +16,7 @@ import { RouterLink } from 'src/routes/components';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
+// eslint-disable-next-line import/no-unresolved
 import Logo from 'src/components/logo';
 import Scrollbar from 'src/components/scrollbar';
 

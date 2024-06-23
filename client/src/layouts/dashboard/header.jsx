@@ -7,10 +7,13 @@ import Toolbar from '@mui/material/Toolbar';
 import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 
+// eslint-disable-next-line import/no-unresolved
 import { useResponsive } from 'src/hooks/use-responsive';
 
+// eslint-disable-next-line import/no-unresolved
 import { bgBlur } from 'src/theme/css';
 
+// eslint-disable-next-line import/no-unresolved
 import Iconify from 'src/components/iconify';
 
 import Searchbar from './common/searchbar';

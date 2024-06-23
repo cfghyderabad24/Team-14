@@ -10,6 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 
+// eslint-disable-next-line import/no-unresolved
 import { account } from 'src/_mock/account';
 
 // ----------------------------------------------------------------------
@@ -33,6 +34,7 @@ export default function AccountPopover() {
 
   const handleClose = () => {
     setOpen(null);
+    localStorage.removeItem('token');
     navigate('/login');
   };
 

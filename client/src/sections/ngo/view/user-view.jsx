@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable perfectionist/sort-imports */
 import React, { useState, useEffect } from 'react';
 
 import Card from '@mui/material/Card';
@@ -15,6 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { CircularProgress } from '@mui/material';
 
 
+// eslint-disable-next-line import/no-unresolved
 import Scrollbar from 'src/components/scrollbar';
 
 import TableNoData from '../table-no-data';

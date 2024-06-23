@@ -1,5 +1,7 @@
+/* eslint-disable import/no-unresolved */
 import { useScrollToTop } from 'src/hooks/use-scroll-to-top';
 
+// eslint-disable-next-line perfectionist/sort-imports
 import Router from 'src/routes/sections';
 
 import ThemeProvider from 'src/theme';

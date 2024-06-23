@@ -35,7 +35,7 @@ export default function RegisterView() {
   const [userid, setUserid] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const handleFullnameChange = (e) => setFullname(e.target.value);
   const handleUseridChange = (e) => setUserid(e.target.value);
@@ -45,7 +45,7 @@ export default function RegisterView() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    // setLoading(true);
 
     try {
       const response = await fetch('http://localhost:8000/api/users/register', {
@@ -74,7 +74,7 @@ export default function RegisterView() {
       // Handle error (e.g., display error message)
     }
 
-    setLoading(false);
+    // setLoading(false);
   };
 
   const renderForm = (

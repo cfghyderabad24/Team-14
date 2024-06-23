@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import SvgColor from 'src/components/svg-color';
 
 const icon = (name) => (
@@ -74,6 +75,7 @@ const navConfig12 = (role) => {
 };
 
 // Example of retrieving user role from localStorage
+
 const userRole = localStorage.getItem('role'); // Assuming 'userRole' is stored in localStorage
 
 // Example of filtering navConfig based on user role
