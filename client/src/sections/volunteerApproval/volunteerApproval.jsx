@@ -51,7 +51,6 @@ export default function VolunteerApprovalForm() {
     console.log(formValues);
     router.push('/dashboard');
   };
-//returns the card with checklist for volunteer to approve
   return (
     <Box
       sx={{
