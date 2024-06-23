@@ -13,6 +13,7 @@ import AppConversionRates from '../app-conversion-rates';
 
 export default function AppView() {
   const [users, setUsers] = useState([]);
+  const [sch, setSch] = useState([]);
   const [renewalRequests, setRenewalRequests] = useState([]);
 
   useEffect(() => {
@@ -20,6 +21,11 @@ export default function AppView() {
     fetch('http://localhost:8000/api/users/')
       .then((response) => response.json())
       .then((data) => setUsers(data))
+      .catch((error) => console.error('Error fetching users:', error));
+
+      fetch('http://localhost:8000/api/scholarshipRequests/')
+      .then((response) => response.json())
+      .then((data) => setSch(data))
       .catch((error) => console.error('Error fetching users:', error));
 
     // Fetch Renewal Requests
@@ -43,7 +49,7 @@ export default function AppView() {
       (req) => !req.approvedBy.includes('trustee')
     ).length;
 
-    const courseCounts = renewalRequests.reduce((acc, req) => {
+    const courseCounts = sch.reduce((acc, req) => {
       if (!acc[req.course]) {
         acc[req.course] = 0;
       }
@@ -125,13 +131,13 @@ export default function AppView() {
                   name: 'Renewals',
                   type: 'area',
                   fill: 'gradient',
-                  data: [0, 0, 0, stats.totalRenewalRequests],
+                  data: [0, 0, 0, 0],
                 },
                 {
                   name: 'Total',
                   type: 'area',
                   fill: 'gradient',
-                  data: [0, 0, 0, stats.studentCount + stats.totalRenewalRequests],
+                  data: [0, 0, 0, stats.studentCount],
                 },
               ],
             }}

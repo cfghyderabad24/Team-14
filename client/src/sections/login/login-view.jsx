@@ -174,6 +174,7 @@ import { bgGradient } from 'src/theme/css';
 
 import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
+// import {navConfig, getFilteredNavConfig} from 'src/layouts/dashboard/config-layout';
 
 
 // ----------------------------------------------------------------------
@@ -207,6 +208,7 @@ export default function LoginView() {
       const data = await response.json();
       localStorage.setItem('token', data.token);
       localStorage.setItem('role', data.role);
+      // navConfig = getFilteredNavConfig();
       router.push('/');
       // Optionally redirect to dashboard or another route
       // history.push('/dashboard');

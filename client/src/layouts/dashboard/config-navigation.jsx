@@ -66,6 +66,8 @@ const navConfig12 = (role) => {
       return navConfig1.filter(item => ['dashboard', 'trustee'].includes(item.title));
     case 'alumni':
       return navConfig1.filter(item => ['dashboard', 'AluminiNotification', 'diss'].includes(item.title));
+    case 'NGO':
+      return navConfig1.filter(item => ['dashboard', 'NGO'].includes(item.title));
     default:
       return navConfig1.filter(item => item.title === 'dashboard'); // Default to showing only dashboard for unknown roles
   }
